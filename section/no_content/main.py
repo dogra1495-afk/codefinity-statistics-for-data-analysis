@@ -1,14 +1,19 @@
-import pandas as pd 
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import scipy.stats as st
 import numpy as np
 
-df = pd.read_csv('https://codefinity-content-media.s3.eu-west-1.amazonaws.com/a849660e-ddfa-4033-80a6-94a1b7772e23/update/Stores.csv')
+# Read csv file
+data = pd.read_csv('https://codefinity-content-media.s3.eu-west-1.amazonaws.com/a849660e-ddfa-4033-80a6-94a1b7772e23/section_1/confidence.csv', index_col = 0)
 
-# Calculate the covariance
-cov = np.cov(df['Daily_Customer_Count'], df['Items_Available'])[0,1]
-# Calculate the correlation
-corr = np.corrcoef(df['Daily_Customer_Count'], df['Items_Available'])[0,1]
+# Output the first five observations
+print(data)
 
-print("The covariance is", round(cov, 2))
-  
-print("The correlation is", round(corr, 2))
-
+# Create the histplot
+plot = sns.histplot(data = data,
+                  x = 'body_mass_g',
+                  kde = True)
+plot.set_title('Penguins')
+plot.set(xlabel = 'The Mass', ylabel = 'The Quantity')
+plt.show()
