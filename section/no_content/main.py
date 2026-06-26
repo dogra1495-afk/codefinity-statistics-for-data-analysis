@@ -1,12 +1,14 @@
-# Import library 
-import pandas as pd
+import pandas as pd 
+import numpy as np
 
-df = pd.read_csv('https://codefinity-content-media.s3.eu-west-1.amazonaws.com/a849660e-ddfa-4033-80a6-94a1b7772e23/update/ds_salaries_statistics', index_col = 0)
+df = pd.read_csv('https://codefinity-content-media.s3.eu-west-1.amazonaws.com/a849660e-ddfa-4033-80a6-94a1b7772e23/update/Stores.csv')
 
-# Calculate the variance
-var = df['salary'].var()
-# Calculate the standard deviation 
-std = df['salary'].std()
+# Calculate the covariance
+cov = np.cov(df['Daily_Customer_Count'], df['Items_Available'])[0,1]
+# Calculate the correlation
+corr = np.corrcoef(df['Daily_Customer_Count'], df['Items_Available'])[0,1]
 
-print('The variace is', round(var, 2))
-print('The standard deviation is', round(std, 2))
+print("The covariance is", round(cov, 2))
+  
+print("The correlation is", round(corr, 2))
+
